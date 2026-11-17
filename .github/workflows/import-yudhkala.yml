@@ -1,0 +1,68 @@
+name: Import YudhKala Boxing prototype
+on:
+  push:
+    paths:
+      - ".github/workflows/import-yudhkala.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout KHELLOK
+        uses: actions/checkout@v4
+      - name: Download verified game source and assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --retry-delay 3 --connect-timeout 20 \
+            "https://d2ol7oe51mr4n9.cloudfront.net/user_3BjwTJYCzFGxri4Mx2xQr2GkqBc/c36b01a8-cb80-48ce-90ba-0b8308870c9b.zip" \
+            -o /tmp/yudhkala-boxing.zip
+          echo "ee2ef0b5bd4937b4ee37f6f72b677a1447a04cd5df1f8f4442ac67b2de264544  /tmp/yudhkala-boxing.zip" | sha256sum -c -
+          mkdir -p /tmp/yk_unpack yudhkala/boxing
+          unzip -q -o /tmp/yudhkala-boxing.zip -d /tmp/yk_unpack
+          for f in README.md QA_REPORT.md index.html; do
+            cp "/tmp/yk_unpack/$f" "yudhkala/boxing/$f"
+          done
+          for d in src assets vendor tests; do
+            mkdir -p "yudhkala/boxing/$d"
+          done
+          cp /tmp/yk_unpack/src/{game.mjs,combat-core.mjs} yudhkala/boxing/src/
+          cp /tmp/yk_unpack/assets/fighter01_r2.glb yudhkala/boxing/assets/
+          cp /tmp/yk_unpack/vendor/{three.module.js,GLTFLoader.js,BufferGeometryUtils.js} yudhkala/boxing/vendor/
+          cp /tmp/yk_unpack/tests/core.test.mjs yudhkala/boxing/tests/
+          cp /tmp/yk_unpack/tests/balance.mjs yudhkala/boxing/tests/
+          cp /tmp/yk_unpack/tests/{browser.cjs,offline.cjs,live_hit.cjs} yudhkala/boxing/tests/
+          cp /tmp/yk_unpack/tests/browser_results.json yudhkala/boxing/tests/
+          cp /tmp/yk_unpack/tests/offline_results.json yudhkala/boxing/tests/
+          cp /tmp/yk_unpack/tests/{desktop_match.png,mobile_match.png} yudhkala/boxing/tests/
+          cat > yudhkala/boxing/.gitignore <<'GITIGNORE'
+          node_modules/
+          .DS_Store
+          dist/
+          *Offline.html
+          GITIGNORE
+      - name: Verify playable game source and rules
+        run: |
+          set -euo pipefail
+          node --check yudhkala/boxing/src/combat-core.mjs
+          node --check yudhkala/boxing/src/game.mjs
+          node yudhkala/boxing/tests/core.test.mjs
+          test -s yudhkala/boxing/assets/fighter01_r2.glb
+      - name: Commit game to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add yudhkala/boxing
+          if git diff --cached --quiet; then
+            echo "Game already imported"
+          else
+            git commit -m "feat(yudhkala): add Boxing v0.1 playable Three.js game"
+            git push origin HEAD:main
+          fi

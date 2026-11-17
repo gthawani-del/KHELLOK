@@ -1,0 +1,278 @@
+[
+  {
+    "mobile": false,
+    "pre": {
+      "ready": true,
+      "errors": [],
+      "clips": [
+        8,
+        8
+      ],
+      "canvas": true
+    },
+    "started": {
+      "time": 59.95,
+      "player": {
+        "hp": 100,
+        "stamina": 100,
+        "action": "idle",
+        "x": -1.18,
+        "z": 0
+      },
+      "cpu": {
+        "hp": 100,
+        "stamina": 100,
+        "action": "idle",
+        "x": 1.1050131645249008,
+        "z": 0.005441766038806393
+      },
+      "metrics": {
+        "pHits": 0,
+        "cHits": 0,
+        "pAttempts": 0,
+        "cAttempts": 0
+      },
+      "winner": null,
+      "finished": false
+    },
+    "after": {
+      "time": 59.88333333333334,
+      "player": {
+        "hp": 100,
+        "stamina": 89.15833333333333,
+        "action": "jab",
+        "x": -1.18,
+        "z": 0
+      },
+      "cpu": {
+        "hp": 100,
+        "stamina": 100,
+        "action": "idle",
+        "x": 1.0049885795554452,
+        "z": 0.015960277109081707
+      },
+      "metrics": {
+        "pHits": 0,
+        "cHits": 0,
+        "pAttempts": 1,
+        "cAttempts": 0
+      },
+      "winner": null,
+      "finished": false
+    },
+    "sim": {
+      "time": 57.883333333333454,
+      "player": {
+        "hp": 92,
+        "stamina": 100,
+        "action": "hit_reaction",
+        "x": 1.3531861311706321,
+        "z": 0.038468824566252544
+      },
+      "cpu": {
+        "hp": 100,
+        "stamina": 91.5333333333333,
+        "action": "jab",
+        "x": 2.1123741228737805,
+        "z": 0.00334627833537256
+      },
+      "metrics": {
+        "pHits": 0,
+        "cHits": 1,
+        "pAttempts": 1,
+        "cAttempts": 1
+      },
+      "winner": null,
+      "finished": false
+    },
+    "final": {
+      "time": 57.883333333333454,
+      "player": {
+        "hp": 92,
+        "stamina": 100,
+        "action": "hit_reaction",
+        "x": 1.3531861311706321,
+        "z": 0.038468824566252544
+      },
+      "cpu": {
+        "hp": 100,
+        "stamina": 91.5333333333333,
+        "action": "jab",
+        "x": 2.1123741228737805,
+        "z": 0.00334627833537256
+      },
+      "metrics": {
+        "pHits": 0,
+        "cHits": 1,
+        "pAttempts": 1,
+        "cAttempts": 1
+      },
+      "winner": null,
+      "finished": false
+    },
+    "tap": {
+      "scroll": 1280,
+      "client": 1280,
+      "buttons": [
+        44,
+        44,
+        44,
+        44,
+        48,
+        48,
+        48,
+        48,
+        48
+      ]
+    },
+    "errors": [
+      "NETWORK_REQUEST file:///home/user/yudhkala_match/YudhKala_Boxing_Play_Offline.html",
+      "NETWORK_REQUEST blob:null/be4b9fb4-3773-4dea-8b5c-287f97c94f53",
+      "NETWORK_REQUEST blob:null/34af8161-6201-46ea-89b1-d2297ea60cba",
+      "NETWORK_REQUEST blob:null/6783f804-3cb7-4204-afb8-b1168e554337",
+      "NETWORK_REQUEST blob:null/7bb61225-eeef-4981-b952-baff6a2cde26",
+      "NETWORK_REQUEST blob:null/978f246f-21a6-4eab-9d90-f07d1c9d5ac3",
+      "NETWORK_REQUEST blob:null/f7906f6c-7784-4fdf-b662-2391931e51e7",
+      "NETWORK_REQUEST blob:null/5a95cb6e-805a-40ab-b608-e580ca44af24",
+      "NETWORK_REQUEST blob:null/15a1b568-7bc9-4ee2-b0a8-3ffd952c22c0"
+    ]
+  },
+  {
+    "mobile": true,
+    "pre": {
+      "ready": true,
+      "errors": [],
+      "clips": [
+        8,
+        8
+      ],
+      "canvas": true
+    },
+    "started": {
+      "time": 59.983333333333334,
+      "player": {
+        "hp": 100,
+        "stamina": 100,
+        "action": "idle",
+        "x": -1.18,
+        "z": 0
+      },
+      "cpu": {
+        "hp": 100,
+        "stamina": 100,
+        "action": "idle",
+        "x": 1.155,
+        "z": 0.0055000000000000005
+      },
+      "metrics": {
+        "pHits": 0,
+        "cHits": 0,
+        "pAttempts": 0,
+        "cAttempts": 0
+      },
+      "winner": null,
+      "finished": false
+    },
+    "after": {
+      "time": 59.95,
+      "player": {
+        "hp": 100,
+        "stamina": 89,
+        "action": "jab",
+        "x": -1.18,
+        "z": 0
+      },
+      "cpu": {
+        "hp": 100,
+        "stamina": 100,
+        "action": "idle",
+        "x": 1.1050131645249008,
+        "z": 0.005441766038806393
+      },
+      "metrics": {
+        "pHits": 0,
+        "cHits": 0,
+        "pAttempts": 1,
+        "cAttempts": 0
+      },
+      "winner": null,
+      "finished": false
+    },
+    "sim": {
+      "time": 57.95000000000012,
+      "player": {
+        "hp": 87,
+        "stamina": 100,
+        "action": "idle",
+        "x": 0.9382318775012323,
+        "z": 0.0574250361884055
+      },
+      "cpu": {
+        "hp": 100,
+        "stamina": 92.71666666666653,
+        "action": "idle",
+        "x": 1.6982304929565317,
+        "z": 0.055974344619559475
+      },
+      "metrics": {
+        "pHits": 0,
+        "cHits": 1,
+        "pAttempts": 1,
+        "cAttempts": 1
+      },
+      "winner": null,
+      "finished": false
+    },
+    "final": {
+      "time": 57.95000000000012,
+      "player": {
+        "hp": 87,
+        "stamina": 100,
+        "action": "idle",
+        "x": 0.9382318775012323,
+        "z": 0.0574250361884055
+      },
+      "cpu": {
+        "hp": 100,
+        "stamina": 92.71666666666653,
+        "action": "idle",
+        "x": 1.6982304929565317,
+        "z": 0.055974344619559475
+      },
+      "metrics": {
+        "pHits": 0,
+        "cHits": 1,
+        "pAttempts": 1,
+        "cAttempts": 1
+      },
+      "winner": null,
+      "finished": false
+    },
+    "tap": {
+      "scroll": 390,
+      "client": 390,
+      "buttons": [
+        44,
+        44,
+        44,
+        44,
+        49,
+        49,
+        49,
+        49,
+        49
+      ]
+    },
+    "errors": [
+      "NETWORK_REQUEST file:///home/user/yudhkala_match/YudhKala_Boxing_Play_Offline.html",
+      "NETWORK_REQUEST blob:null/738ecf8d-586d-4f21-b76f-d5bb0d004e80",
+      "NETWORK_REQUEST blob:null/0a246156-41c0-4aaf-81fe-38728ad5a09c",
+      "NETWORK_REQUEST blob:null/bd3f300c-9133-44dd-b9a3-1871095d40aa",
+      "NETWORK_REQUEST blob:null/b8ef2eaf-7169-4d07-a2fb-441f3d854e0b",
+      "NETWORK_REQUEST blob:null/d1f3206d-9f93-43af-b103-7f5e313171fe",
+      "NETWORK_REQUEST blob:null/552634ad-86f0-4a04-8a2c-57873bd7579e",
+      "NETWORK_REQUEST blob:null/0370d75b-b118-4e95-a8b3-00ebd7caa914",
+      "NETWORK_REQUEST blob:null/57346580-f747-4784-8090-24846c354dca"
+    ]
+  }
+]

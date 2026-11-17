@@ -1,0 +1,266 @@
+[
+  {
+    "mode": "desktop",
+    "loaded": {
+      "loaded": true,
+      "errors": [],
+      "clips": [
+        [
+          "idle",
+          "jab",
+          "hook",
+          "uppercut",
+          "block",
+          "dodge",
+          "hit_reaction",
+          "knockdown"
+        ],
+        [
+          "idle",
+          "jab",
+          "hook",
+          "uppercut",
+          "block",
+          "dodge",
+          "hit_reaction",
+          "knockdown"
+        ]
+      ],
+      "sizes": {
+        "width": 1280,
+        "scroll": 1280
+      }
+    },
+    "initial": {
+      "time": 60,
+      "player": {
+        "hp": 100,
+        "stamina": 100,
+        "action": "idle",
+        "x": -1.18,
+        "z": 0
+      },
+      "cpu": {
+        "hp": 100,
+        "stamina": 100,
+        "action": "idle",
+        "x": 1.18,
+        "z": 0
+      },
+      "metrics": {
+        "pHits": 0,
+        "cHits": 0,
+        "pAttempts": 0,
+        "cAttempts": 0
+      },
+      "winner": null,
+      "finished": false
+    },
+    "after": {
+      "time": 59.85000000000001,
+      "player": {
+        "hp": 100,
+        "stamina": 89.475,
+        "action": "jab",
+        "x": -0.9940014842391197,
+        "z": 0.0005415844104755676
+      },
+      "cpu": {
+        "hp": 100,
+        "stamina": 100,
+        "action": "idle",
+        "x": 0.9550062369919796,
+        "z": 0.015484836924972574
+      },
+      "metrics": {
+        "pHits": 0,
+        "cHits": 0,
+        "pAttempts": 1,
+        "cAttempts": 0
+      },
+      "winner": null,
+      "finished": false
+    },
+    "errors": [],
+    "targets": [
+      {
+        "name": "▲",
+        "w": 45,
+        "h": 44
+      },
+      {
+        "name": "◀",
+        "w": 45,
+        "h": 44
+      },
+      {
+        "name": "▼",
+        "w": 45,
+        "h": 44
+      },
+      {
+        "name": "▶",
+        "w": 45,
+        "h": 44
+      },
+      {
+        "name": "JABJ",
+        "w": 90,
+        "h": 48
+      },
+      {
+        "name": "HOOKK",
+        "w": 90,
+        "h": 48
+      },
+      {
+        "name": "UPPERCUTL",
+        "w": 90,
+        "h": 48
+      },
+      {
+        "name": "BLOCKHold / Space",
+        "w": 90,
+        "h": 48
+      },
+      {
+        "name": "DODGEShift",
+        "w": 90,
+        "h": 48
+      }
+    ],
+    "fps": 21
+  },
+  {
+    "mode": "mobile",
+    "loaded": {
+      "loaded": true,
+      "errors": [],
+      "clips": [
+        [
+          "idle",
+          "jab",
+          "hook",
+          "uppercut",
+          "block",
+          "dodge",
+          "hit_reaction",
+          "knockdown"
+        ],
+        [
+          "idle",
+          "jab",
+          "hook",
+          "uppercut",
+          "block",
+          "dodge",
+          "hit_reaction",
+          "knockdown"
+        ]
+      ],
+      "sizes": {
+        "width": 390,
+        "scroll": 390
+      }
+    },
+    "initial": {
+      "time": 59.95,
+      "player": {
+        "hp": 100,
+        "stamina": 100,
+        "action": "idle",
+        "x": -1.18,
+        "z": 0
+      },
+      "cpu": {
+        "hp": 100,
+        "stamina": 100,
+        "action": "idle",
+        "x": 1.1050131645249008,
+        "z": 0.005441766038806393
+      },
+      "metrics": {
+        "pHits": 0,
+        "cHits": 0,
+        "pAttempts": 0,
+        "cAttempts": 0
+      },
+      "winner": null,
+      "finished": false
+    },
+    "after": {
+      "time": 59.73333333333335,
+      "player": {
+        "hp": 100,
+        "stamina": 89.475,
+        "action": "jab",
+        "x": -1.0870012965365417,
+        "z": 0.0004529202127852807
+      },
+      "cpu": {
+        "hp": 100,
+        "stamina": 100,
+        "action": "idle",
+        "x": 0.779869527323962,
+        "z": 0.030774029061752053
+      },
+      "metrics": {
+        "pHits": 0,
+        "cHits": 0,
+        "pAttempts": 1,
+        "cAttempts": 0
+      },
+      "winner": null,
+      "finished": false
+    },
+    "errors": [],
+    "targets": [
+      {
+        "name": "▲",
+        "w": 43,
+        "h": 46
+      },
+      {
+        "name": "◀",
+        "w": 43,
+        "h": 46
+      },
+      {
+        "name": "▼",
+        "w": 43,
+        "h": 46
+      },
+      {
+        "name": "▶",
+        "w": 43,
+        "h": 46
+      },
+      {
+        "name": "JABJ",
+        "w": 64,
+        "h": 49
+      },
+      {
+        "name": "HOOKK",
+        "w": 64,
+        "h": 49
+      },
+      {
+        "name": "UPPERCUTL",
+        "w": 64,
+        "h": 49
+      },
+      {
+        "name": "BLOCKHold / Space",
+        "w": 64,
+        "h": 49
+      },
+      {
+        "name": "DODGEShift",
+        "w": 64,
+        "h": 49
+      }
+    ],
+    "fps": 26
+  }
+]

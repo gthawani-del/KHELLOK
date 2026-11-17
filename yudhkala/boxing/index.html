@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>YudhKala Boxing · Playable Combat Prototype</title>
+<style>
+:root{--ink:#eae4d8;--muted:#b9b1a4;--red:#9e3f38;--blue:#526b92;--line:#666055;--panel:#171b22e9}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0b0d13;color:var(--ink);font:15px/1.25 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+canvas{display:block;position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+button{color:var(--ink);font:inherit;cursor:pointer;outline-offset:3px;-webkit-tap-highlight-color:transparent}
+#hud{position:absolute;z-index:3;top:0;left:0;right:0;padding:15px max(15px,env(safe-area-inset-right)) 10px;pointer-events:none;background:linear-gradient(#11141cea 0%,#10131bd3 70%,transparent)}
+#brand{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 auto 9px;max-width:1150px;font-weight:750;letter-spacing:.16em;font-size:13px}
+#brand small{font-size:10px;color:#a6a6a5;letter-spacing:.06em;font-weight:500}
+#bars{display:grid;max-width:1150px;margin:auto;grid-template-columns:minmax(0,1fr) 104px minmax(0,1fr);gap:14px;align-items:start}
+.p-name{display:flex;align-items:center;justify-content:space-between;gap:4px;font-weight:700;letter-spacing:.035em;margin-bottom:5px;font-size:13px}
+.p-name .sub{font-size:10px;color:var(--muted);font-weight:450}
+.bar{height:12px;overflow:hidden;border:1px solid #86817b77;background:#242a32;border-radius:3px}
+.bar .fill{height:100%;width:100%;transition:width .13s linear}
+#php{background:linear-gradient(90deg,#7f332f,#c9574d)}
+#chp{background:linear-gradient(90deg,#526b93,#8faacf)}
+.bar.stam{height:5px;border:0;margin-top:5px;background:#32373a}
+.bar.stam .fill{background:#b8a37b}
+#c-name{text-align:right}
+#timer{text-align:center;font-weight:800;font-size:30px;letter-spacing:.025em;line-height:1.15;font-variant-numeric:tabular-nums}
+#round{text-align:center;font-size:9px;letter-spacing:.1em;color:#b6b2a7;text-transform:uppercase;margin-top:1px}
+#arena-note{position:absolute;z-index:3;top:125px;left:50%;transform:translateX(-50%);text-align:center;color:#ded3bbad;font-size:11px;white-space:nowrap;pointer-events:none}
+#toasts{position:absolute;z-index:6;top:24%;left:50%;transform:translateX(-50%);font-size:28px;font-weight:800;letter-spacing:.065em;color:#fff5e6;text-shadow:0 4px 22px #000b;pointer-events:none;text-align:center}
+#controls{position:absolute;z-index:4;bottom:max(14px,env(safe-area-inset-bottom));left:max(15px,env(safe-area-inset-left));right:max(15px,env(safe-area-inset-right));display:flex;justify-content:space-between;align-items:end;gap:10px;pointer-events:none}
+#move-pad{display:grid;grid-template-columns:repeat(3,54px);grid-template-rows:repeat(2,52px);gap:5px;pointer-events:auto;user-select:none;touch-action:none}
+#move-pad button{min-height:48px;border:1px solid #8c898065;background:var(--panel);border-radius:7px;box-shadow:0 6px 20px #0003;font-size:19px}
+#move-pad button:nth-child(1){grid-column:2}
+#move-pad button:nth-child(2){grid-column:1;grid-row:2}
+#move-pad button:nth-child(3){grid-column:2;grid-row:2}
+#move-pad button:nth-child(4){grid-column:3;grid-row:2}
+#move-pad button.down{background:#8a7964a1}
+#attacks{display:grid;grid-template-columns:repeat(3,minmax(70px,91px));gap:7px;pointer-events:auto;user-select:none}
+#attacks button{min-height:55px;padding:7px 8px;border:1px solid #77746f8c;border-radius:8px;background:#1a2029f2;font-size:12px;font-weight:700;box-shadow:0 6px 20px #0004}
+#attacks button small{display:block;color:#c4bcb2;font-size:10px;font-weight:450;margin-top:4px}
+#attacks .punch{border-color:#98544c;background:#63342fcf}
+#attacks .down{filter:brightness(1.35)}
+#attacks #dodge-btn{grid-column:2}
+#attacks #block-btn{grid-column:1}
+#attacks #upper-btn{grid-column:3}
+#top-actions{position:absolute;z-index:5;right:18px;top:133px;display:flex;gap:7px}
+#top-actions button{background:#131822bc;border:1px solid #68686666;padding:8px 10px;font-size:11px;border-radius:6px;min-height:34px}
+#hint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-size:11px;color:#afafa6;text-align:center;text-shadow:0 1px 6px black;pointer-events:none;z-index:2;max-width:300px}
+#overlay{position:absolute;z-index:10;inset:0;background:linear-gradient(150deg,#10141bd9,#06070bdc);display:flex;align-items:center;justify-content:center;padding:18px}
+#overlay.hidden{display:none}
+#modal{width:min(480px,100%);padding:30px;background:#171b23;border:1px solid #504c45;border-radius:12px;text-align:center;box-shadow:0 30px 120px #000a}
+.kicker{font-size:11px;letter-spacing:.17em;color:#d4a784;font-weight:700}
+#modal h1{font-size:38px;margin:10px 0 8px;letter-spacing:.12em}
+#modal h2{font-size:21px;margin:10px 0 7px}
+#modal p{color:#c0b8ac;font-size:14px;line-height:1.55;margin:0 0 15px}
+#modal button{background:var(--red);border:1px solid #c9786e;color:white;border-radius:7px;padding:14px 29px;font-weight:750;letter-spacing:.07em;min-width:160px;min-height:48px}
+#modal select{border:1px solid #5a5b5b;background:#232b33;color:#fff;padding:10px;border-radius:6px;margin-bottom:17px}
+#modal .foot{margin-top:18px;color:#9f9d95;font-size:11px}
+#status{position:absolute;bottom:7px;right:10px;font-size:9px;z-index:2;color:#a2b4be;pointer-events:none}
+@media (min-width:780px){
+#move-pad{grid-template-columns:repeat(3,45px);grid-template-rows:repeat(2,44px)}
+#move-pad button{min-height:44px;font-size:14px}
+#attacks{grid-template-columns:repeat(3,90px)}
+#attacks button{min-height:48px}
+}
+@media (max-width:620px){
+#hud{padding-top:max(12px,env(safe-area-inset-top));padding-left:12px;padding-right:12px}
+#brand{font-size:11px;margin-bottom:8px}#brand small{font-size:9px}
+#bars{grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr);gap:7px}
+.p-name{font-size:11px;margin-bottom:4px}.p-name .sub{font-size:9px}
+#timer{font-size:24px}
+#round{font-size:8px}
+.bar{height:9px}
+#arena-note{top:110px;font-size:9px}
+#top-actions{top:117px;right:12px}
+#controls{bottom:max(13px,env(safe-area-inset-bottom));gap:6px}
+#move-pad{grid-template-columns:repeat(3,44px);grid-template-rows:repeat(2,46px);gap:4px}
+#move-pad button{min-height:43px;font-size:17px}
+#attacks{grid-template-columns:repeat(3,64px);gap:5px}
+#attacks button{min-height:49px;font-size:10px;padding:5px 2px}
+#attacks button small{font-size:9px;margin-top:2px}
+#hint{display:none}#toasts{font-size:21px;top:24%}
+#status{bottom:auto;top:148px;font-size:8px}
+}
+@media(max-width:350px){#move-pad{grid-template-columns:repeat(3,38px)}#attacks{grid-template-columns:repeat(3,57px)}#attacks button{font-size:9px}}
+@media (prefers-reduced-motion:reduce){.bar .fill{transition:none}}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head>
+<body>
+<div id="hud">
+ <div id="brand"><span>YUDHKALA <small> / BOXING LAB</small></span><small>ONE ROUND · PLAYER VS CPU</small></div>
+ <div id="bars">
+  <div><div class="p-name"><span>YOU <span class="sub">RED CORNER</span></span><span id="pnum">100</span></div><div class="bar"><div class="fill" id="php"></div></div><div class="bar stam"><div class="fill" id="pstam"></div></div></div>
+  <div><div id="timer">1:00</div><div id="round">ROUND 01</div></div>
+  <div><div class="p-name" id="c-name"><span id="cnum">100</span><span>CPU <span class="sub">BLUE CORNER</span></span></div><div class="bar"><div class="fill" id="chp"></div></div><div class="bar stam"><div class="fill" id="cstam"></div></div></div>
+ </div>
+</div>
+<div id="arena-note">REAL 3D FIGHTERS · COMBAT PROTOTYPE</div>
+<div id="top-actions"><button id="sound-btn" aria-label="Toggle sound">Sound on</button><button id="pause-btn" aria-label="Pause or resume bout">Pause</button><button id="restart-btn">Restart</button></div>
+<div id="toasts" role="status" aria-live="polite"></div>
+<div id="controls">
+ <div id="move-pad" aria-label="Movement controls"><button data-move="forward" aria-label="Advance">▲</button><button data-move="left" aria-label="Strafe left">◀</button><button data-move="back" aria-label="Retreat">▼</button><button data-move="right" aria-label="Strafe right">▶</button></div>
+ <div id="attacks" aria-label="Combat controls">
+  <button class="punch" data-attack="jab">JAB<small>J</small></button><button class="punch" data-attack="hook">HOOK<small>K</small></button><button class="punch" data-attack="uppercut" id="upper-btn">UPPERCUT<small>L</small></button>
+  <button id="block-btn" data-move="block">BLOCK<small>Hold / Space</small></button><button id="dodge-btn" data-attack="dodge">DODGE<small>Shift</small></button>
+ </div>
+</div>
+<div id="hint">WASD move · J jab · K hook · L uppercut · Space block · Shift dodge</div>
+<div id="status">Prototype V0.1 · no multiplayer</div>
+<div id="overlay">
+ <div id="modal">
+  <div class="kicker">KHELLOK PRESENTS · PLAYABLE PROTOTYPE</div>
+  <h1>YUDHKALA</h1>
+  <h2 id="modal-title">BOXING · FIRST BOUT</h2>
+  <p id="modal-desc">Two 3D fighters. One 60-second round.<br/>Land clean punches, defend your guard and manage stamina.</p>
+  <label for="difficulty" style="display:block;font-size:12px;color:#bfb5a6;margin:0 0 8px">CPU difficulty</label>
+  <select id="difficulty"><option value="standard" selected>Standard</option><option value="easy">Easy</option></select><br/>
+  <button id="start-btn">START BOUT</button>
+  <div class="foot" id="loading-message">Loading the actual fighter rig…</div>
+ </div>
+</div>
+<script type="module" src="./src/game.mjs"></script>
+</body></html>
